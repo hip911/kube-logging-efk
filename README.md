@@ -31,8 +31,9 @@ Visualization of data in ES using the REST api.
     
     ,then reference it in the ingresses.
  
-* ES will eat your ram rapidly. The example has a minimum and maximum of 1G memory usage and just a single replica, which should be enough for testing.
+* ES will eat your ram rapidly. The example has a minimum and maximum of 1G memory usage and just a single replica, which should be enough for testing. HA setup will consist of minimum 3 nodes.
 * If some of your nodes have more memory you can force the ES pod with ['nodeSelector'](https://kubernetes.io/docs/concepts/configuration/assign-pod-node/#nodeselector) to be scheduled there.  
+* When first visiting Kibana add `logtash-*` as your index pattern. This will let you query all the `logstash-YYYY.MM.DD` indexes which ends up in ES.  
 
 #### Installation
 
@@ -43,3 +44,4 @@ Visualization of data in ES using the REST api.
 #### TODO
 
 ES and Kibana docker images has been deprecated, update them to 6.x 
+Current setup does not have persistent storage, so losing all pods will mean you need to start collecting again :)
